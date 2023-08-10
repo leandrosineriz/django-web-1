@@ -17,7 +17,7 @@ def index(request):
     
     
             
-    return render (request, 'index.html', context=mydictionary)
+    return render (request, 'votingapp/index.html', context=mydictionary)
 
 def getquery(request):
     q = request.GET["languages"]
@@ -36,7 +36,7 @@ def getquery(request):
         "globalcnt": globalcnt,
         "max" : max
     }
-    return render(request, "index.html", context=mydictionary)
+    return render(request, "votingapp/index.html", context=mydictionary)
 
 def sortdata(request):
     global globalcnt
@@ -51,7 +51,7 @@ def sortdata(request):
         "globalcnt" : globalcnt,
         "max" : max
     }
-    return render (request, 'index.html', context=mydictionary)
+    return render (request, 'votingapp/index.html', context=mydictionary)
 
 def set_max():
     global max
