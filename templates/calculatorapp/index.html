@@ -1,114 +1,105 @@
+{% extends 'index.html' %}
 {% load static %}
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Django Calculator App</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
-  </head>
-  <body class="bg-light">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Django Calculator App</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#instruccions">Instruccions</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          
-            <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="/">Volver</a>
-              </li>
-            </ul>
-          
-        </div>
-      </nav>
+{% block content %}
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Django Calculator App</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#about">About</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#instruccions">Instruccions</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Volver</a>
+        </li>
+      </ul>
+    
+  </div>
+</nav>
 
-      <div class="container-fluid" style="margin-bottom: 10rem;">
-        <div class="row">
-          <div class="col-md-6" style="margin: 0 auto;">
-            {% if error %}
-              <div class="alert alert-warning alert-dismissible" role="alert">
-                 <div>Error</div>
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container-fluid" style="margin-bottom: 10rem;">
+  <div class="row">
+    <div class="col-md-6" style="margin: 0 auto;">
+      {% if error %}
+        <div class="alert alert-warning alert-dismissible" role="alert">
+           <div>Error</div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
+      <div class="col-md-6" style="margin: 1rem auto 0 auto;">
+          <img src="{% static 'photo.jpg' %}" alt="logo" class="img-fluid" style="display: block; margin: 0 auto;">
+          <div class="card">
+              <div class="card-body">
+                  <form method="get" action="{% url 'submitquery' %}">
+                      <div class="mb-3">
+                          <input type="search" class="form-control" id="query" name="query" aria-describedby="search" value="{{ ans }}">
+                      </div>
+                      <div class="row">
+                          <div class="col-md-6">
+                              <input type="submit" class="btn btn-success" style="display: block; margin: 0 auto;">
+                          </div>
+                          <div class="col-md-6">
+                              <input type="reset" class="btn btn-danger" style="display: block; margin: 0 auto;">
+                          </div>
+                      </div>
+                  </form>
               </div>
-            {% endif %}
           </div>
-        </div>
-        <div class="row">
-            <div class="col-md-6" style="margin: 1rem auto 0 auto;">
-                <img src="{% static 'photo.jpg' %}" alt="logo" class="img-fluid" style="display: block; margin: 0 auto;">
-                <div class="card">
-                    <div class="card-body">
-                        <form method="get" action="{% url 'submitquery' %}">
-                            <div class="mb-3">
-                                <input type="search" class="form-control" id="query" name="query" aria-describedby="search" value="{{ ans }}">
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <input type="submit" class="btn btn-success" style="display: block; margin: 0 auto;">
-                                </div>
-                                <div class="col-md-6">
-                                    <input type="reset" class="btn btn-danger" style="display: block; margin: 0 auto;">
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
       </div>
+  </div>
+</div>
 
-      <div class="row" style="margin-bottom: 5rem;">
-        <div class="col-md-6" style="margin: 2rem auto 0 auto;">
-            <p class="display-4" id="about" name="about" style="text-align: center;">
-                About
-            </p>
-            <p class="lead" style="text-align: center;">
-                Out Calculator app can perform mathematical operations
-            </p>
-        </div>
-      </div>
-      <div class="row" style="margin-bottom: 20rem;">
-        <div class="col-md-6" style="margin: 2rem auto 0 auto;">
-            <p class="display-4" id="instruccions" name="instruccions" style="text-align: center;">
-                Instruccions
-            </p>
-            <hr>
-            <ul class="list-group">
-              <li class="list-group-item">+ Addition</li>
-              <li class="list-group-item">- Minus</li>
-              <li class="list-group-item">* Multiplication</li>
-              <li class="list-group-item">/ Division</li>
-              <li class="list-group-item">// Floor Division</li>
-              <li class="list-group-item">( ) Parentheses</li>
-              <li class="list-group-item">** Exponential</li>
-              <li class="list-group-item">%% Mod</li>
-            </ul>
-        </div>
-      </div>
+<div class="row" style="margin-bottom: 5rem;">
+  <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+      <p class="display-4" id="about" name="about" style="text-align: center;">
+          About
+      </p>
+      <p class="lead" style="text-align: center;">
+          Out Calculator app can perform mathematical operations
+      </p>
+  </div>
+</div>
+<div class="row" style="margin-bottom: 20rem;">
+  <div class="col-md-6" style="margin: 2rem auto 0 auto;">
+      <p class="display-4" id="instruccions" name="instruccions" style="text-align: center;">
+          Instruccions
+      </p>
+      <hr>
+      <ul class="list-group">
+        <li class="list-group-item">+ Addition</li>
+        <li class="list-group-item">- Minus</li>
+        <li class="list-group-item">* Multiplication</li>
+        <li class="list-group-item">/ Division</li>
+        <li class="list-group-item">// Floor Division</li>
+        <li class="list-group-item">( ) Parentheses</li>
+        <li class="list-group-item">** Exponential</li>
+        <li class="list-group-item">%% Mod</li>
+      </ul>
+  </div>
+</div>
 
 
-      <div class="container-fluid">
-        <div class="row">
-            <footer class="fixed-bottom navbar-light" style="background: black; color: white; text-align: center;">
-                <p>Thanks for using our app!</p>
-            </footer>
+<div class="container-fluid">
+  <div class="row">
+      <footer class="fixed-bottom navbar-light" style="background: black; color: white; text-align: center;">
+          <p>Thanks for using our app!</p>
+      </footer>
 
-        </div>
-      </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
-  </body>
-</html>
+  </div>
+</div>
+{% endblock content %}
