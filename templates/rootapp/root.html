@@ -1,14 +1,12 @@
 {% extends 'index.html' %}
+{% load static %}
 {% block content %}
 <main>
     <section class="no-parallax">
-      <span class="hidden">
+      <div class="hidden">
         <h1>Leandro Siñeriz</h1>
-      </span>
-      <br>
-      <span class="hidden">
         <h2>Software developer</h2>
-      </span>
+      </div>
     </section>
 
     <section class="parallax bg">
@@ -19,8 +17,10 @@
       <div class="hidden">
         <h1>CONTACTO:</h1>
         <h2><a href="https://www.linkedin.com/in/leandro-sineriz-86b823179/"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/640px-LinkedIn_logo_initials.png" alt="logo" style="width: 5rem;"> LinkedIn</a></h2>
-        <h2>Mail: leandrosineriz@gmail.com</h2>
+        <h2><img src="{% static 'logoGmail.webp'%}" alt="logoGmail" style="width: 5rem;">Gmail: leandrosineriz@gmail.com</h2>
       </div>
     </section>
 </main>
+
+<script src="{% static 'js/main.js' %}"></script>
 {% endblock content %}

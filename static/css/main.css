@@ -60,6 +60,7 @@ section h1
 {
   background-color: #212529;
   z-index: 999;
+  flex-wrap: wrap;
 }
 
 .parallax {
@@ -114,6 +115,9 @@ section h1
   opacity: 1;
   filter: blur(0);
   transform: translateX(0);
+  flex: 0 0 calc(33.33% - 10px); /* Define el ancho de cada elemento hijo (ajústalo según tus necesidades) */
+  margin: 5px; /* Espacio entre los elementos hijos */
+  
 }
 
 
